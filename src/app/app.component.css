@@ -1,0 +1,36 @@
+/* Styles for the navbar and buttons */
+.container-fluid {
+  width: 100%;
+  padding: 0;
+}
+
+.navbar {
+  width: 100%;
+  padding: 0.5rem 1rem;
+}
+
+.container-fluid {
+ 
+  justify-content: space-between;
+  align-items: center;
+}
+
+.search-form {
+ 
+  align-items: center;
+  justify-content: center;
+}
+
+.search-form form {
+
+  width: 100%;
+}
+
+.search-form .form-group {
+  flex-grow: 1;
+  margin-right: 10px;
+}
+
+.search-form .btn-primary {
+  align-self: center;
+}

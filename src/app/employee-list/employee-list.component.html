@@ -1,0 +1,61 @@
+<div class="container mt-5">
+  <table class="table table-bordered table-hover table-striped">
+    <thead>
+      <tr>
+        <th>ID</th>
+        <th>Name</th>
+        <th>Role</th>
+        <th>Experience</th>
+        <th>Actions</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let employee of filteredEmployees" 
+          [class.table-success]="employee.isEditing" 
+          [class.table-warning]="employee.experience > 5" 
+          [class.table-info]="employee.role === 'Manager'">
+        <td>{{ employee.id }}</td>
+        <td>
+          <span *ngIf="!employee.isEditing">{{ employee.name }}</span>
+          <input *ngIf="employee.isEditing" [(ngModel)]="employee.name" class="form-control" />
+        </td>
+        <td>
+          <span *ngIf="!employee.isEditing">{{ employee.role }}</span>
+          <input *ngIf="employee.isEditing" [(ngModel)]="employee.role" class="form-control" />
+        </td>
+        <td>
+          <span *ngIf="!employee.isEditing">{{ employee.experience }}</span>
+          <input *ngIf="employee.isEditing" [(ngModel)]="employee.experience" class="form-control" />
+        </td>
+        <td>
+          <button class="btn btn-info" (click)="viewEmployee(employee)">View</button>
+          <button *ngIf="!employee.isEditing" class="btn btn-warning" (click)="editEmployee(employee)">Edit</button>
+          <button *ngIf="employee.isEditing" class="btn btn-success" (click)="saveEmployee(employee)">Save</button>
+          <button *ngIf="employee.isEditing" class="btn btn-secondary" (click)="cancelEdit(employee)">Cancel</button>
+          <button class="btn btn-danger" (click)="deleteEmployee(employee.id)">Delete</button>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+
+  <!-- Modal for viewing employee details -->
+  <div class="modal" [ngClass]="{'show': showModal}" tabindex="-1" style="display: block;" *ngIf="showModal">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title">Employee Details</h5>
+          <button type="button" class="btn-close" (click)="closeModal()"></button>
+        </div>
+        <div class="modal-body">
+          <p><strong>ID:</strong> {{ selectedEmployee?.id }}</p>
+          <p><strong>Name:</strong> {{ selectedEmployee?.name }}</p>
+          <p><strong>Role:</strong> {{ selectedEmployee?.role }}</p>
+          <p><strong>Experience:</strong> {{ selectedEmployee?.experience }}</p>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" (click)="closeModal()">Close</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

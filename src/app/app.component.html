@@ -1,0 +1,19 @@
+<div class="container-fluid p-0">
+  <nav class="navbar navbar-expand-lg navbar-light bg-light w-100">
+    <div class="container-fluid d-flex justify-content-between">
+      <button class="btn btn-primary" (click)="showSearchForm = !showSearchForm">Search</button>
+      <button class="btn btn-success" (click)="navigateToAddEmployee()">Add Employee</button>
+    </div>
+  </nav>
+
+  <div *ngIf="showSearchForm" class="search-form mt-3 d-flex justify-content-center">
+    <form (ngSubmit)="onSearch()" class="d-flex w-100">
+      <div class="form-group flex-grow-1 mr-2">
+        <input type="text" class="form-control" placeholder="Search Employee" [(ngModel)]="searchQuery" name="searchQuery">
+      </div>
+      <button type="submit" class="btn btn-primary">Search</button>
+    </form>
+  </div>
+
+  <router-outlet></router-outlet>
+</div>
